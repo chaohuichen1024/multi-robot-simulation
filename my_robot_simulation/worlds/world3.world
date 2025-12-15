@@ -1,0 +1,1745 @@
+<sdf version='1.7'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='city_osm_roundabout'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://city_osm_roundabout/meshes/model.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://city_osm_roundabout/meshes/model.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>-0.042763 0.042762 0 0 -0 0</pose>
+    </model>
+    <model name='world1'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/cch/.gazebo/models/world1/world.stl</uri>
+              <scale>1.2 1.2 1.2</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/cch/.gazebo/models/world1/world.stl</uri>
+              <scale>1.2 1.2 1.2</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.8 0.2 0.2 1</ambient>
+            <diffuse>0.8 0.2 0.2 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>-245.482 -294.537 0 0 -0 0</pose>
+    </model>
+    <state world_name='default'>
+      <sim_time>457 672000000</sim_time>
+      <real_time>159 677452900</real_time>
+      <wall_time>1761377313 682757395</wall_time>
+      <iterations>156114</iterations>
+      <model name='city_osm_roundabout'>
+        <pose>-7.1235 -45.0096 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>-7.1235 -45.0096 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_plane'>
+        <pose>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='robot1'>
+        <pose>0.001174 -1 0.199996 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='robot1/base_link'>
+          <pose>0.001174 -1 0.199996 0 -0 0</pose>
+          <velocity>9e-06 0 3.1e-05 0 -1e-06 0</velocity>
+          <acceleration>0.008571 4.6e-05 0.030865 0.000344 -0.00138 -2.8e-05</acceleration>
+          <wrench>0.051943 0.000279 0.187039 0 -0 0</wrench>
+        </link>
+        <link name='robot1/left_front_wheel'>
+          <pose>0.176174 -0.925 0.074996 -1e-06 0.015652 -0</pose>
+          <velocity>9e-06 0 3.1e-05 -1e-06 0.000111 -0</velocity>
+          <acceleration>0.008776 7.5e-05 0.031152 -0.001004 0.110515 6e-06</acceleration>
+          <wrench>0.004388 3.8e-05 0.015576 0 -0 0</wrench>
+        </link>
+        <link name='robot1/left_rear_wheel'>
+          <pose>-0.173826 -0.925 0.074996 -1e-06 0.015652 -0</pose>
+          <velocity>9e-06 0 3.1e-05 -1e-06 0.000111 -0</velocity>
+          <acceleration>0.008779 8.4e-05 0.030664 -0.001124 0.110648 1.5e-05</acceleration>
+          <wrench>0.004389 4.2e-05 0.015332 0 -0 0</wrench>
+        </link>
+        <link name='robot1/right_front_wheel'>
+          <pose>0.176174 -1.075 0.074996 -1e-06 0.015652 -0</pose>
+          <velocity>9e-06 0 3.1e-05 -1e-06 0.000111 -0</velocity>
+          <acceleration>0.008778 7.8e-05 0.031053 -0.001041 0.110565 6e-06</acceleration>
+          <wrench>0.004389 3.9e-05 0.015527 0 -0 0</wrench>
+        </link>
+        <link name='robot1/right_rear_wheel'>
+          <pose>-0.173826 -1.075 0.074996 -1e-06 0.015652 -0</pose>
+          <velocity>9e-06 0 3.1e-05 -1e-06 0.000111 -0</velocity>
+          <acceleration>0.008774 8.6e-05 0.030562 -0.001153 0.110609 1.6e-05</acceleration>
+          <wrench>0.004387 4.3e-05 0.015281 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='robot2'>
+        <pose>1.0012 1 0.199996 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='robot2/base_link'>
+          <pose>1.0012 1 0.199996 0 -0 0</pose>
+          <velocity>9e-06 0 3.1e-05 0 -1e-06 0</velocity>
+          <acceleration>0.00867 4e-05 0.030864 0.000288 -0.001248 -2.2e-05</acceleration>
+          <wrench>0.052537 0.00024 0.187034 0 -0 0</wrench>
+        </link>
+        <link name='robot2/left_front_wheel'>
+          <pose>1.1762 1.075 0.074996 -1e-06 0.015972 -0</pose>
+          <velocity>9e-06 0 3.1e-05 -1e-06 0.000112 -0</velocity>
+          <acceleration>0.008867 6.5e-05 0.031114 -0.000869 0.111605 4e-06</acceleration>
+          <wrench>0.004434 3.3e-05 0.015557 0 -0 0</wrench>
+        </link>
+        <link name='robot2/left_rear_wheel'>
+          <pose>0.826198 1.075 0.074996 -1e-06 0.015972 -0</pose>
+          <velocity>9e-06 0 3.1e-05 -1e-06 0.000112 -0</velocity>
+          <acceleration>0.008869 7.1e-05 0.030689 -0.000944 0.111711 1.3e-05</acceleration>
+          <wrench>0.004434 3.5e-05 0.015344 0 -0 0</wrench>
+        </link>
+        <link name='robot2/right_front_wheel'>
+          <pose>1.1762 0.925 0.074996 -1e-06 0.015972 -0</pose>
+          <velocity>9e-06 0 3.1e-05 -1e-06 0.000112 -0</velocity>
+          <acceleration>0.008868 6.6e-05 0.031029 -0.000881 0.111637 7e-06</acceleration>
+          <wrench>0.004434 3.3e-05 0.015515 0 -0 0</wrench>
+        </link>
+        <link name='robot2/right_rear_wheel'>
+          <pose>0.826198 0.925 0.074996 -1e-06 0.015972 -0</pose>
+          <velocity>9e-06 0 3.1e-05 -1e-06 0.000112 -0</velocity>
+          <acceleration>0.008864 7.3e-05 0.030601 -0.000969 0.111664 1.3e-05</acceleration>
+          <wrench>0.004432 3.6e-05 0.015301 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='robot3'>
+        <pose>0.001195 1 0.199996 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='robot3/base_link'>
+          <pose>0.001195 1 0.199996 0 -0 0</pose>
+          <velocity>9e-06 0 3.1e-05 0 -1e-06 0</velocity>
+          <acceleration>0.008664 4e-05 0.030864 0.000288 -0.001246 -2.2e-05</acceleration>
+          <wrench>0.052504 0.00024 0.187034 0 -0 0</wrench>
+        </link>
+        <link name='robot3/left_front_wheel'>
+          <pose>0.176195 1.075 0.074996 -1e-06 0.015927 0</pose>
+          <velocity>9e-06 0 3.1e-05 -1e-06 0.000112 -0</velocity>
+          <acceleration>0.008862 6.5e-05 0.031114 -0.000869 0.111546 4e-06</acceleration>
+          <wrench>0.004431 3.3e-05 0.015557 0 -0 0</wrench>
+        </link>
+        <link name='robot3/left_rear_wheel'>
+          <pose>-0.173805 1.075 0.074996 -1e-06 0.015927 0</pose>
+          <velocity>9e-06 0 3.1e-05 -1e-06 0.000112 -0</velocity>
+          <acceleration>0.008863 7.1e-05 0.030689 -0.000944 0.111652 1.3e-05</acceleration>
+          <wrench>0.004431 3.5e-05 0.015344 0 -0 0</wrench>
+        </link>
+        <link name='robot3/right_front_wheel'>
+          <pose>0.176195 0.925 0.074996 -1e-06 0.015927 0</pose>
+          <velocity>9e-06 0 3.1e-05 -1e-06 0.000112 -0</velocity>
+          <acceleration>0.008863 6.6e-05 0.031029 -0.000881 0.111577 7e-06</acceleration>
+          <wrench>0.004431 3.3e-05 0.015515 0 -0 0</wrench>
+        </link>
+        <link name='robot3/right_rear_wheel'>
+          <pose>-0.173805 0.925 0.074996 -1e-06 0.015927 0</pose>
+          <velocity>9e-06 0 3.1e-05 -1e-06 0.000112 -0</velocity>
+          <acceleration>0.008858 7.3e-05 0.030601 -0.000969 0.111604 1.3e-05</acceleration>
+          <wrench>0.004429 3.6e-05 0.015301 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='world1'>
+        <pose>-320.61 -340.968 6 0 -0 0</pose>
+        <scale>1.2 1.2 1.2</scale>
+        <link name='link'>
+          <pose>-320.61 -340.968 6 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>735.156 -542.025 628.461 0 0.563643 2.5402</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+    <model name='robot2'>
+      <link name='robot2/base_link'>
+        <inertial>
+          <pose>0.002063 0 0.025 0 -0 0</pose>
+          <mass>6.06</mass>
+          <inertia>
+            <ixx>0.0462775</ixx>
+            <ixy>0</ixy>
+            <ixz>6.25e-05</ixz>
+            <iyy>0.136877</iyy>
+            <iyz>0</iyz>
+            <izz>0.130619</izz>
+          </inertia>
+        </inertial>
+        <collision name='robot2/base_link_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.2 0.1</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='robot2/base_link_fixed_joint_lump__robot2/cube_link_collision_1'>
+          <pose>0 0 0.15 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.2 0.2 0.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='robot2/base_link_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.2 0.1</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name='robot2/base_link_fixed_joint_lump__robot2/camera_link_visual_1'>
+          <pose>0.25 0 0.02 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.05 0.03</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name='robot2/base_link_fixed_joint_lump__robot2/cube_link_visual_2'>
+          <pose>0 0 0.15 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.2 0.2 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/ar</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='robot2/base_link_fixed_joint_lump__robot2/imu_link_visual_3'>
+          <pose>0 0 0.05 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03 0.03 0.01</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name='camera' type='camera'>
+          <update_rate>50</update_rate>
+          <camera name='head'>
+            <horizontal_fov>1.39626</horizontal_fov>
+            <image>
+              <width>1920</width>
+              <height>1080</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.02</near>
+              <far>300</far>
+            </clip>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.007</stddev>
+            </noise>
+          </camera>
+          <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+            <alwaysOn>1</alwaysOn>
+            <updateRate>0.0</updateRate>
+            <cameraName>camera</cameraName>
+            <imageTopicName>image</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>robot2/camera_link</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+            <robotNamespace>robot2</robotNamespace>
+          </plugin>
+          <pose>0.25 0 0.02 0 -0 0</pose>
+        </sensor>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='robot2/left_front_wheel_joint' type='revolute'>
+        <pose relative_to='robot2/base_link'>0.175 0.075 -0.125 0 -0 0</pose>
+        <parent>robot2/base_link</parent>
+        <child>robot2/left_front_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='robot2/left_front_wheel'>
+        <pose relative_to='robot2/left_front_wheel_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.000370312</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000370312</iyy>
+            <iyz>0</iyz>
+            <izz>0.00140625</izz>
+          </inertia>
+        </inertial>
+        <collision name='robot2/left_front_wheel_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>0.1</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='robot2/left_front_wheel_visual'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <slip1>0.1</slip1>
+        <slip2>0.1</slip2>
+      </link>
+      <joint name='robot2/left_rear_wheel_joint' type='revolute'>
+        <pose relative_to='robot2/base_link'>-0.175 0.075 -0.125 0 -0 0</pose>
+        <parent>robot2/base_link</parent>
+        <child>robot2/left_rear_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='robot2/left_rear_wheel'>
+        <pose relative_to='robot2/left_rear_wheel_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.000370312</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000370312</iyy>
+            <iyz>0</iyz>
+            <izz>0.00140625</izz>
+          </inertia>
+        </inertial>
+        <collision name='robot2/left_rear_wheel_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>0.1</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='robot2/left_rear_wheel_visual'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <slip1>0.1</slip1>
+        <slip2>0.1</slip2>
+      </link>
+      <joint name='robot2/right_front_wheel_joint' type='revolute'>
+        <pose relative_to='robot2/base_link'>0.175 -0.075 -0.125 0 -0 0</pose>
+        <parent>robot2/base_link</parent>
+        <child>robot2/right_front_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='robot2/right_front_wheel'>
+        <pose relative_to='robot2/right_front_wheel_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.000370312</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000370312</iyy>
+            <iyz>0</iyz>
+            <izz>0.00140625</izz>
+          </inertia>
+        </inertial>
+        <collision name='robot2/right_front_wheel_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>0.1</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='robot2/right_front_wheel_visual'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <slip1>0.1</slip1>
+        <slip2>0.1</slip2>
+      </link>
+      <joint name='robot2/right_rear_wheel_joint' type='revolute'>
+        <pose relative_to='robot2/base_link'>-0.175 -0.075 -0.125 0 -0 0</pose>
+        <parent>robot2/base_link</parent>
+        <child>robot2/right_rear_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='robot2/right_rear_wheel'>
+        <pose relative_to='robot2/right_rear_wheel_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.000370312</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000370312</iyy>
+            <iyz>0</iyz>
+            <izz>0.00140625</izz>
+          </inertia>
+        </inertial>
+        <collision name='robot2/right_rear_wheel_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>0.1</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='robot2/right_rear_wheel_visual'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <slip1>0.1</slip1>
+        <slip2>0.1</slip2>
+      </link>
+      <plugin name='skid_steer_drive_controller' filename='libgazebo_ros_skid_steer_drive.so'>
+        <updateRate>100.0</updateRate>
+        <robotNamespace>robot2</robotNamespace>
+        <leftFrontJoint>robot2/left_front_wheel_joint</leftFrontJoint>
+        <rightFrontJoint>robot2/right_front_wheel_joint</rightFrontJoint>
+        <leftRearJoint>robot2/left_rear_wheel_joint</leftRearJoint>
+        <rightRearJoint>robot2/right_rear_wheel_joint</rightRearJoint>
+        <wheelSeparation>0.15</wheelSeparation>
+        <wheelDiameter>0.15</wheelDiameter>
+        <robotBaseFrame>robot2/base_link</robotBaseFrame>
+        <torque>100</torque>
+        <topicName>cmd_vel</topicName>
+        <broadcastTF>1</broadcastTF>
+        <odometryTopic>odom</odometryTopic>
+        <odometryFrame>robot2/odom</odometryFrame>
+        <publishWheelTF>0</publishWheelTF>
+        <publishWheelJointState>1</publishWheelJointState>
+      </plugin>
+      <plugin name='imu_plugin' filename='libgazebo_ros_imu.so'>
+        <alwaysOn>1</alwaysOn>
+        <bodyName>robot2/base_link</bodyName>
+        <topicName>imu</topicName>
+        <serviceName>imu_service</serviceName>
+        <gaussianNoise>0.0</gaussianNoise>
+        <updateRate>20.0</updateRate>
+        <robotNamespace>robot2</robotNamespace>
+      </plugin>
+      <plugin name='ground_plane' filename='libgazebo_ros_planar_move.so'>
+        <robotNamespace>robot2</robotNamespace>
+        <bodyName>robot2/base_link</bodyName>
+        <pubTopic>ground_truth</pubTopic>
+      </plugin>
+      <frame name='robot2/camera_joint' attached_to='robot2/base_link'>
+        <pose>0.25 0 0.02 0 -0 0</pose>
+      </frame>
+      <frame name='robot2/camera_link' attached_to='robot2/camera_joint'/>
+      <frame name='robot2/cube_joint' attached_to='robot2/base_link'>
+        <pose>0 0 0.15 0 -0 0</pose>
+      </frame>
+      <frame name='robot2/cube_link' attached_to='robot2/cube_joint'/>
+      <frame name='robot2/imu_joint' attached_to='robot2/base_link'>
+        <pose>0 0 0.05 0 -0 0</pose>
+      </frame>
+      <frame name='robot2/imu_link' attached_to='robot2/imu_joint'/>
+      <pose>1 1 0.2 0 -0 0</pose>
+    </model>
+    <model name='robot1'>
+      <link name='robot1/base_link'>
+        <inertial>
+          <pose>0.002063 0 0.025 0 -0 0</pose>
+          <mass>6.06</mass>
+          <inertia>
+            <ixx>0.0462775</ixx>
+            <ixy>0</ixy>
+            <ixz>6.25e-05</ixz>
+            <iyy>0.136877</iyy>
+            <iyz>0</iyz>
+            <izz>0.130619</izz>
+          </inertia>
+        </inertial>
+        <collision name='robot1/base_link_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.2 0.1</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='robot1/base_link_fixed_joint_lump__robot1/cube_link_collision_1'>
+          <pose>0 0 0.15 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.2 0.2 0.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='robot1/base_link_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.2 0.1</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name='robot1/base_link_fixed_joint_lump__robot1/camera_link_visual_1'>
+          <pose>0.25 0 0.02 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.05 0.03</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name='robot1/base_link_fixed_joint_lump__robot1/cube_link_visual_2'>
+          <pose>0 0 0.15 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.2 0.2 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/ar</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='robot1/base_link_fixed_joint_lump__robot1/imu_link_visual_3'>
+          <pose>0 0 0.05 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03 0.03 0.01</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name='camera' type='camera'>
+          <update_rate>50</update_rate>
+          <camera name='head'>
+            <horizontal_fov>1.39626</horizontal_fov>
+            <image>
+              <width>1920</width>
+              <height>1080</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.02</near>
+              <far>300</far>
+            </clip>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.007</stddev>
+            </noise>
+          </camera>
+          <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+            <alwaysOn>1</alwaysOn>
+            <updateRate>0.0</updateRate>
+            <cameraName>camera</cameraName>
+            <imageTopicName>image</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>robot1/camera_link</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+            <robotNamespace>robot1</robotNamespace>
+          </plugin>
+          <pose>0.25 0 0.02 0 -0 0</pose>
+        </sensor>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='robot1/left_front_wheel_joint' type='revolute'>
+        <pose relative_to='robot1/base_link'>0.175 0.075 -0.125 0 -0 0</pose>
+        <parent>robot1/base_link</parent>
+        <child>robot1/left_front_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='robot1/left_front_wheel'>
+        <pose relative_to='robot1/left_front_wheel_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.000370312</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000370312</iyy>
+            <iyz>0</iyz>
+            <izz>0.00140625</izz>
+          </inertia>
+        </inertial>
+        <collision name='robot1/left_front_wheel_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>0.1</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='robot1/left_front_wheel_visual'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <slip1>0.1</slip1>
+        <slip2>0.1</slip2>
+      </link>
+      <joint name='robot1/left_rear_wheel_joint' type='revolute'>
+        <pose relative_to='robot1/base_link'>-0.175 0.075 -0.125 0 -0 0</pose>
+        <parent>robot1/base_link</parent>
+        <child>robot1/left_rear_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='robot1/left_rear_wheel'>
+        <pose relative_to='robot1/left_rear_wheel_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.000370312</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000370312</iyy>
+            <iyz>0</iyz>
+            <izz>0.00140625</izz>
+          </inertia>
+        </inertial>
+        <collision name='robot1/left_rear_wheel_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>0.1</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='robot1/left_rear_wheel_visual'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <slip1>0.1</slip1>
+        <slip2>0.1</slip2>
+      </link>
+      <joint name='robot1/right_front_wheel_joint' type='revolute'>
+        <pose relative_to='robot1/base_link'>0.175 -0.075 -0.125 0 -0 0</pose>
+        <parent>robot1/base_link</parent>
+        <child>robot1/right_front_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='robot1/right_front_wheel'>
+        <pose relative_to='robot1/right_front_wheel_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.000370312</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000370312</iyy>
+            <iyz>0</iyz>
+            <izz>0.00140625</izz>
+          </inertia>
+        </inertial>
+        <collision name='robot1/right_front_wheel_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>0.1</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='robot1/right_front_wheel_visual'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <slip1>0.1</slip1>
+        <slip2>0.1</slip2>
+      </link>
+      <joint name='robot1/right_rear_wheel_joint' type='revolute'>
+        <pose relative_to='robot1/base_link'>-0.175 -0.075 -0.125 0 -0 0</pose>
+        <parent>robot1/base_link</parent>
+        <child>robot1/right_rear_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='robot1/right_rear_wheel'>
+        <pose relative_to='robot1/right_rear_wheel_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.000370312</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000370312</iyy>
+            <iyz>0</iyz>
+            <izz>0.00140625</izz>
+          </inertia>
+        </inertial>
+        <collision name='robot1/right_rear_wheel_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>0.1</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='robot1/right_rear_wheel_visual'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <slip1>0.1</slip1>
+        <slip2>0.1</slip2>
+      </link>
+      <plugin name='skid_steer_drive_controller' filename='libgazebo_ros_skid_steer_drive.so'>
+        <updateRate>100.0</updateRate>
+        <robotNamespace>robot1</robotNamespace>
+        <leftFrontJoint>robot1/left_front_wheel_joint</leftFrontJoint>
+        <rightFrontJoint>robot1/right_front_wheel_joint</rightFrontJoint>
+        <leftRearJoint>robot1/left_rear_wheel_joint</leftRearJoint>
+        <rightRearJoint>robot1/right_rear_wheel_joint</rightRearJoint>
+        <wheelSeparation>0.15</wheelSeparation>
+        <wheelDiameter>0.15</wheelDiameter>
+        <robotBaseFrame>robot1/base_link</robotBaseFrame>
+        <torque>100</torque>
+        <topicName>cmd_vel</topicName>
+        <broadcastTF>1</broadcastTF>
+        <odometryTopic>odom</odometryTopic>
+        <odometryFrame>robot1/odom</odometryFrame>
+        <publishWheelTF>0</publishWheelTF>
+        <publishWheelJointState>1</publishWheelJointState>
+      </plugin>
+      <plugin name='imu_plugin' filename='libgazebo_ros_imu.so'>
+        <alwaysOn>1</alwaysOn>
+        <bodyName>robot1/base_link</bodyName>
+        <topicName>imu</topicName>
+        <serviceName>imu_service</serviceName>
+        <gaussianNoise>0.0</gaussianNoise>
+        <updateRate>20.0</updateRate>
+        <robotNamespace>robot1</robotNamespace>
+      </plugin>
+      <plugin name='ground_plane' filename='libgazebo_ros_planar_move.so'>
+        <robotNamespace>robot1</robotNamespace>
+        <bodyName>robot1/base_link</bodyName>
+        <pubTopic>ground_truth</pubTopic>
+      </plugin>
+      <frame name='robot1/camera_joint' attached_to='robot1/base_link'>
+        <pose>0.25 0 0.02 0 -0 0</pose>
+      </frame>
+      <frame name='robot1/camera_link' attached_to='robot1/camera_joint'/>
+      <frame name='robot1/cube_joint' attached_to='robot1/base_link'>
+        <pose>0 0 0.15 0 -0 0</pose>
+      </frame>
+      <frame name='robot1/cube_link' attached_to='robot1/cube_joint'/>
+      <frame name='robot1/imu_joint' attached_to='robot1/base_link'>
+        <pose>0 0 0.05 0 -0 0</pose>
+      </frame>
+      <frame name='robot1/imu_link' attached_to='robot1/imu_joint'/>
+      <pose>0 -1 0.2 0 -0 0</pose>
+    </model>
+    <model name='robot3'>
+      <link name='robot3/base_link'>
+        <inertial>
+          <pose>0.002063 0 0.025 0 -0 0</pose>
+          <mass>6.06</mass>
+          <inertia>
+            <ixx>0.0462775</ixx>
+            <ixy>0</ixy>
+            <ixz>6.25e-05</ixz>
+            <iyy>0.136877</iyy>
+            <iyz>0</iyz>
+            <izz>0.130619</izz>
+          </inertia>
+        </inertial>
+        <collision name='robot3/base_link_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.2 0.1</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='robot3/base_link_fixed_joint_lump__robot3/cube_link_collision_1'>
+          <pose>0 0 0.15 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.2 0.2 0.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='robot3/base_link_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.2 0.1</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name='robot3/base_link_fixed_joint_lump__robot3/camera_link_visual_1'>
+          <pose>0.25 0 0.02 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.05 0.03</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name='robot3/base_link_fixed_joint_lump__robot3/cube_link_visual_2'>
+          <pose>0 0 0.15 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.2 0.2 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/ar</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='robot3/base_link_fixed_joint_lump__robot3/imu_link_visual_3'>
+          <pose>0 0 0.05 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03 0.03 0.01</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name='camera' type='camera'>
+          <update_rate>50</update_rate>
+          <camera name='head'>
+            <horizontal_fov>1.39626</horizontal_fov>
+            <image>
+              <width>1920</width>
+              <height>1080</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.02</near>
+              <far>300</far>
+            </clip>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.007</stddev>
+            </noise>
+          </camera>
+          <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+            <alwaysOn>1</alwaysOn>
+            <updateRate>0.0</updateRate>
+            <cameraName>camera</cameraName>
+            <imageTopicName>image</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>robot3/camera_link</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+            <robotNamespace>robot3</robotNamespace>
+          </plugin>
+          <pose>0.25 0 0.02 0 -0 0</pose>
+        </sensor>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='robot3/left_front_wheel_joint' type='revolute'>
+        <pose relative_to='robot3/base_link'>0.175 0.075 -0.125 0 -0 0</pose>
+        <parent>robot3/base_link</parent>
+        <child>robot3/left_front_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='robot3/left_front_wheel'>
+        <pose relative_to='robot3/left_front_wheel_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.000370312</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000370312</iyy>
+            <iyz>0</iyz>
+            <izz>0.00140625</izz>
+          </inertia>
+        </inertial>
+        <collision name='robot3/left_front_wheel_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>0.1</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='robot3/left_front_wheel_visual'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <slip1>0.1</slip1>
+        <slip2>0.1</slip2>
+      </link>
+      <joint name='robot3/left_rear_wheel_joint' type='revolute'>
+        <pose relative_to='robot3/base_link'>-0.175 0.075 -0.125 0 -0 0</pose>
+        <parent>robot3/base_link</parent>
+        <child>robot3/left_rear_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='robot3/left_rear_wheel'>
+        <pose relative_to='robot3/left_rear_wheel_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.000370312</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000370312</iyy>
+            <iyz>0</iyz>
+            <izz>0.00140625</izz>
+          </inertia>
+        </inertial>
+        <collision name='robot3/left_rear_wheel_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>0.1</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='robot3/left_rear_wheel_visual'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <slip1>0.1</slip1>
+        <slip2>0.1</slip2>
+      </link>
+      <joint name='robot3/right_front_wheel_joint' type='revolute'>
+        <pose relative_to='robot3/base_link'>0.175 -0.075 -0.125 0 -0 0</pose>
+        <parent>robot3/base_link</parent>
+        <child>robot3/right_front_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='robot3/right_front_wheel'>
+        <pose relative_to='robot3/right_front_wheel_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.000370312</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000370312</iyy>
+            <iyz>0</iyz>
+            <izz>0.00140625</izz>
+          </inertia>
+        </inertial>
+        <collision name='robot3/right_front_wheel_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>0.1</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='robot3/right_front_wheel_visual'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <slip1>0.1</slip1>
+        <slip2>0.1</slip2>
+      </link>
+      <joint name='robot3/right_rear_wheel_joint' type='revolute'>
+        <pose relative_to='robot3/base_link'>-0.175 -0.075 -0.125 0 -0 0</pose>
+        <parent>robot3/base_link</parent>
+        <child>robot3/right_rear_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='robot3/right_rear_wheel'>
+        <pose relative_to='robot3/right_rear_wheel_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.000370312</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000370312</iyy>
+            <iyz>0</iyz>
+            <izz>0.00140625</izz>
+          </inertia>
+        </inertial>
+        <collision name='robot3/right_rear_wheel_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>0.1</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='robot3/right_rear_wheel_visual'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.03</length>
+              <radius>0.075</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <slip1>0.1</slip1>
+        <slip2>0.1</slip2>
+      </link>
+      <plugin name='skid_steer_drive_controller' filename='libgazebo_ros_skid_steer_drive.so'>
+        <updateRate>100.0</updateRate>
+        <robotNamespace>robot3</robotNamespace>
+        <leftFrontJoint>robot3/left_front_wheel_joint</leftFrontJoint>
+        <rightFrontJoint>robot3/right_front_wheel_joint</rightFrontJoint>
+        <leftRearJoint>robot3/left_rear_wheel_joint</leftRearJoint>
+        <rightRearJoint>robot3/right_rear_wheel_joint</rightRearJoint>
+        <wheelSeparation>0.15</wheelSeparation>
+        <wheelDiameter>0.15</wheelDiameter>
+        <robotBaseFrame>robot3/base_link</robotBaseFrame>
+        <torque>100</torque>
+        <topicName>cmd_vel</topicName>
+        <broadcastTF>1</broadcastTF>
+        <odometryTopic>odom</odometryTopic>
+        <odometryFrame>robot3/odom</odometryFrame>
+        <publishWheelTF>0</publishWheelTF>
+        <publishWheelJointState>1</publishWheelJointState>
+      </plugin>
+      <plugin name='imu_plugin' filename='libgazebo_ros_imu.so'>
+        <alwaysOn>1</alwaysOn>
+        <bodyName>robot3/base_link</bodyName>
+        <topicName>imu</topicName>
+        <serviceName>imu_service</serviceName>
+        <gaussianNoise>0.0</gaussianNoise>
+        <updateRate>20.0</updateRate>
+        <robotNamespace>robot3</robotNamespace>
+      </plugin>
+      <plugin name='ground_plane' filename='libgazebo_ros_planar_move.so'>
+        <robotNamespace>robot3</robotNamespace>
+        <bodyName>robot3/base_link</bodyName>
+        <pubTopic>ground_truth</pubTopic>
+      </plugin>
+      <frame name='robot3/camera_joint' attached_to='robot3/base_link'>
+        <pose>0.25 0 0.02 0 -0 0</pose>
+      </frame>
+      <frame name='robot3/camera_link' attached_to='robot3/camera_joint'/>
+      <frame name='robot3/cube_joint' attached_to='robot3/base_link'>
+        <pose>0 0 0.15 0 -0 0</pose>
+      </frame>
+      <frame name='robot3/cube_link' attached_to='robot3/cube_joint'/>
+      <frame name='robot3/imu_joint' attached_to='robot3/base_link'>
+        <pose>0 0 0.05 0 -0 0</pose>
+      </frame>
+      <frame name='robot3/imu_link' attached_to='robot3/imu_joint'/>
+      <pose>0 1 0.2 0 -0 0</pose>
+    </model>
+  </world>
+</sdf>

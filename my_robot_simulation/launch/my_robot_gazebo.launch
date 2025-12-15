@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- 机器人位置参数 -->
+  <arg name="robot1_x" default="0"/>
+  <arg name="robot1_y" default="-1"/>
+  <arg name="robot1_z" default="0.2"/>
+  
+  <arg name="robot2_x" default="1"/>
+  <arg name="robot2_y" default="1"/>
+  <arg name="robot2_z" default="0.2"/>
+  
+  <arg name="robot3_x" default="0"/>
+  <arg name="robot3_y" default="1"/>
+  <arg name="robot3_z" default="0.2"/>
+<!-- 
+  <arg name="robot4_x" default="1"/>
+  <arg name="robot4_y" default="0"/>
+  <arg name="robot4_z" default="0.2"/> -->
+
+
+  <!-- Gazebo世界 -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find my_robot_simulation)/worlds/world3.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- <include file="$(find my_robot_simulation)/launch/aruco_detection.launch"></include> -->
+  <!-- <include file="$(find my_robot_simulation)/launch/robot_relative_position.launch"></include> -->
+  <!-- <include file="$(find robot_joy)/launch/multi_robot_keyboard.launch"></include> -->
+
+
+
+  <!-- 第一个机器人 -->
+  <group ns="robot1">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find my_robot_simulation)/urdf/my_robot.xacro' robot_name:=robot1" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
+          args="-urdf -model robot1 -param robot_description -x $(arg robot1_x) -y $(arg robot1_y) -z $(arg robot1_z)" />
+    <!-- 添加关节状态发布器 -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+      <remap from="robot_description" to="robot_description" />
+      <remap from="joint_states" to="joint_states" />
+    </node>
+  </group>
+
+  <!-- 第二个机器人 -->
+  <group ns="robot2">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find my_robot_simulation)/urdf/my_robot.xacro' robot_name:=robot2" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
+          args="-urdf -model robot2 -param robot_description -x $(arg robot2_x) -y $(arg robot2_y) -z $(arg robot2_z)" />
+    <!-- 添加关节状态发布器 -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+      <remap from="robot_description" to="robot_description" />
+      <remap from="joint_states" to="joint_states" />
+    </node>
+  </group>
+
+  <!-- 第三个机器人 -->
+  <group ns="robot3">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find my_robot_simulation)/urdf/my_robot.xacro' robot_name:=robot3" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
+          args="-urdf -model robot3 -param robot_description -x $(arg robot3_x) -y $(arg robot3_y) -z $(arg robot3_z)" />
+    <!-- 添加关节状态发布器 -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+      <remap from="robot_description" to="robot_description" />
+      <remap from="joint_states" to="joint_states" />
+    </node>
+  </group>
+
+  <!-- 第四个机器人 -->
+  <!-- <group ns="robot4">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find my_robot_simulation)/urdf/my_robot.xacro' robot_name:=robot4" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
+          args="-urdf -model robot4 -param robot_description -x $(arg robot4_x) -y $(arg robot4_y) -z $(arg robot4_z)" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+      <remap from="robot_description" to="robot_description" />
+      <remap from="joint_states" to="joint_states" />
+    </node>
+  </group> -->
+
+  <!-- 静态TF发布器 - 与机器人位置保持一致 -->
+  <node pkg="tf" type="static_transform_publisher" name="world_to_robot1_odom" 
+        args="0 0 0 0 0 0 world robot1/odom 100" />
+  <node pkg="tf" type="static_transform_publisher" name="world_to_robot2_odom" 
+        args="0 0 0 0 0 0 world robot2/odom 100" />
+  <node pkg="tf" type="static_transform_publisher" name="world_to_robot3_odom" 
+        args="0 0 0 0 0 0 world robot3/odom 100" />
+
+  <!-- <node pkg="tf" type="static_transform_publisher" name="world_to_robot4_odom" 
+        args="0 0 0 0 0 0 world robot4/odom 100" /> -->
+
+  <!-- RViz配置 -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find my_robot_simulation)/rviz/multi_robot.rviz" />
+
+</launch>

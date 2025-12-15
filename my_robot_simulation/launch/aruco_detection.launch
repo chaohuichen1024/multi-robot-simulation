@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<launch>
+   
+    <!-- 可配置参数 -->
+    <arg name="robot_names" default="['robot1', 'robot2', 'robot3']" doc="要监控的机器人名称列表"/>
+    <arg name="output" default="screen" doc="节点输出方式：screen或log"/>
+    <arg name="enable_image_view" default="false" doc="是否启动图像查看器"/>
+    
+    <!-- 启动AR码检测器 -->
+    <node pkg="my_robot_simulation" type="multi_aruco_detector.py" 
+          name="enhanced_aruco_detector" output="$(arg output)" respawn="true">
+        <param name="robot_names" value="$(arg robot_names)" />
+    </node>
+    
+    <!-- 可选：启动图像查看器用于调试 -->
+    <group if="$(arg enable_image_view)">
+        <!-- 动态创建图像查看器 -->
+        <node pkg="image_view" type="image_view" name="image_view_robot1" 
+              if="$(eval 'robot1' in arg('robot_names'))">
+            <remap from="image" to="/aruco_detection/robot1/result"/>
+            <param name="window_name" value="Robot1 AR Detection"/>
+            <param name="autosize" value="true"/>
+        </node>
+        
+        <node pkg="image_view" type="image_view" name="image_view_robot2"
+              if="$(eval 'robot2' in arg('robot_names'))">
+            <remap from="image" to="/aruco_detection/robot2/result"/>
+            <param name="window_name" value="Robot2 AR Detection"/>
+            <param name="autosize" value="true"/>
+        </node>
+        
+        <node pkg="image_view" type="image_view" name="image_view_robot3"
+              if="$(eval 'robot3' in arg('robot_names'))">
+            <remap from="image" to="/aruco_detection/robot3/result"/>
+            <param name="window_name" value="Robot3 AR Detection"/>
+            <param name="autosize" value="true"/>
+        </node>
+    </group>
+    
+</launch>

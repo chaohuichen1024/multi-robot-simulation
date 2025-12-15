@@ -1,0 +1,387 @@
+<?xml version="1.0"?>
+<robot name="differential_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- 添加机器人名称参数 -->
+  <xacro:arg name="robot_name" default="robot"/>
+  <xacro:property name="robot_name" value="$(arg robot_name)" />
+
+  <!-- 材料定义 -->
+  <material name="blue">
+    <color rgba="0.0 0.0 0.8 1.0"/>
+  </material>
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+  <material name="gray">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+  <material name="red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+  <material name="white">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
+  <material name="green">
+    <color rgba="0.0 0.8 0.0 1.0"/>
+  </material>
+
+  <!-- 参数定义 -->
+  <xacro:property name="base_length" value="0.5" />
+  <xacro:property name="base_width" value="0.2" />
+  <xacro:property name="base_height" value="0.1" />
+  <xacro:property name="wheel_radius" value="0.075" />
+  <xacro:property name="wheel_length" value="0.03" />
+  <xacro:property name="wheel_y_offset" value="0.075" />
+  <xacro:property name="wheel_x_offset" value="0.175" />
+  <xacro:property name="wheel_z_offset" value="-0.125" />
+  <xacro:property name="cube_size" value="0.2" />
+  <xacro:property name="cube_z_offset" value="0.18" />
+  <!-- <xacro:property name="pi" value="3.1415926535897931" /> -->
+
+  <!-- 底盘链接 - 添加TF前缀 -->
+  <link name="${robot_name}/base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <inertia ixx="${(1/12)*5.0*(base_width**2 + base_height**2)}" 
+               ixy="0.0" 
+               ixz="0.0" 
+               iyy="${(1/12)*5.0*(base_length**2 + base_height**2)}" 
+               iyz="0.0" 
+               izz="${(1/12)*5.0*(base_length**2 + base_width**2)}"/>
+    </inertial>
+  </link>
+
+  <!-- 立方体链接 -->
+  <link name="${robot_name}/cube_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${cube_size} ${cube_size} ${cube_size}"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${cube_size} ${cube_size} ${cube_size}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="${(1/12)*1.0*(cube_size**2 + cube_size**2)}" 
+               ixy="0.0" 
+               ixz="0.0" 
+               iyy="${(1/12)*1.0*(cube_size**2 + cube_size**2)}" 
+               iyz="0.0" 
+               izz="${(1/12)*1.0*(cube_size**2 + cube_size**2)}"/>
+    </inertial>
+  </link>
+
+  <!-- 立方体关节 -->
+  <joint name="${robot_name}/cube_joint" type="fixed">
+    <parent link="${robot_name}/base_link"/>
+    <child link="${robot_name}/cube_link"/>
+    <origin xyz="0 0 ${cube_z_offset}" rpy="0 0 0"/>
+  </joint>
+
+  <gazebo reference="${robot_name}/cube_link"> 
+    <material>Gazebo/ar</material>
+  </gazebo>
+
+  <!-- 轮子宏定义 - 修改为连续旋转关节 -->
+  <xacro:macro name="wheel" params="name parent xyz">
+    <link name="${robot_name}/${name}">
+      <visual>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+        </geometry>
+        <material name="black"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.5"/>
+        <inertia ixx="${0.5*0.5*(3*wheel_radius**2 + wheel_length**2)/12}" 
+                 ixy="0.0" 
+                 ixz="0.0" 
+                 iyy="${0.5*0.5*(3*wheel_radius**2 + wheel_length**2)/12}" 
+                 iyz="0.0" 
+                 izz="${0.5*0.5*wheel_radius**2}"/>
+      </inertial>
+    </link>
+
+    <!-- 修改为连续旋转关节 -->
+    <joint name="${robot_name}/${name}_joint" type="continuous">
+      <parent link="${parent}"/>
+      <child link="${robot_name}/${name}"/>
+      <origin xyz="${xyz}" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- 创建四个轮子 -->
+  <xacro:wheel name="left_rear_wheel" parent="${robot_name}/base_link" 
+               xyz="-${wheel_x_offset} ${wheel_y_offset} ${wheel_z_offset}"/>
+  <xacro:wheel name="right_rear_wheel" parent="${robot_name}/base_link" 
+               xyz="-${wheel_x_offset} -${wheel_y_offset} ${wheel_z_offset}"/>
+  <xacro:wheel name="left_front_wheel" parent="${robot_name}/base_link" 
+               xyz="${wheel_x_offset} ${wheel_y_offset} ${wheel_z_offset}"/>
+  <xacro:wheel name="right_front_wheel" parent="${robot_name}/base_link" 
+               xyz="${wheel_x_offset} -${wheel_y_offset} ${wheel_z_offset}"/>
+
+  <!-- 在创建四个轮子之后，添加Gazebo物理属性 -->
+  <!-- 修改轮子的摩擦配置 -->
+  <gazebo reference="${robot_name}/left_rear_wheel">
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <!-- 关键修改：降低侧向摩擦，保持滚动摩擦 -->
+    <mu1>1.5</mu1>    <!-- 滚动方向摩擦 - 保持较高 -->
+    <mu2>0.1</mu2>    <!-- 侧向摩擦 - 降低以便转向时滑动 -->
+    <fdir1>1 0 0</fdir1>  <!-- 摩擦方向：滚动方向 -->
+    <slip1>0.1</slip1>    <!-- 增加滑移 -->
+    <slip2>0.1</slip2>
+  </gazebo>
+
+  <gazebo reference="${robot_name}/right_rear_wheel">
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <mu1>1.5</mu1>
+    <mu2>0.1</mu2>
+    <fdir1>1 0 0</fdir1>
+    <slip1>0.1</slip1>
+    <slip2>0.1</slip2>
+  </gazebo>
+
+  <gazebo reference="${robot_name}/left_front_wheel">
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <mu1>1.5</mu1>
+    <mu2>0.1</mu2>
+    <fdir1>1 0 0</fdir1>
+    <slip1>0.1</slip1>
+    <slip2>0.1</slip2>
+  </gazebo>
+
+  <gazebo reference="${robot_name}/right_front_wheel">
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <mu1>1.5</mu1>
+    <mu2>0.1</mu2>
+    <fdir1>1 0 0</fdir1>
+    <slip1>0.1</slip1>
+    <slip2>0.1</slip2>
+  </gazebo>
+
+  <!-- IMU传感器 -->
+  <link name="${robot_name}/imu_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.03 0.03 0.01"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <inertial>
+      <mass value="0.01"/>
+      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001"/>
+    </inertial>
+  </link>
+
+  <joint name="${robot_name}/imu_joint" type="fixed">
+    <parent link="${robot_name}/base_link"/>
+    <child link="${robot_name}/imu_link"/>
+    <origin xyz="0 0 0.05" rpy="0 0 0"/>
+  </joint>
+
+  <!-- 相机 -->
+  <link name="${robot_name}/camera_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.03"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001"/>
+    </inertial>
+  </link>
+
+  <joint name="${robot_name}/camera_joint" type="fixed">
+    <parent link="${robot_name}/base_link"/>
+    <child link="${robot_name}/camera_link"/>
+    <origin xyz="0.25 0 0.02" rpy="0 0 0"/>
+  </joint>
+
+
+  <!-- 右侧相机 -->
+  <link name="${robot_name}/right_camera_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.03"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001"/>
+    </inertial>
+  </link>
+
+  <joint name="${robot_name}/right_camera_joint" type="fixed">
+    <parent link="${robot_name}/base_link"/>
+    <child link="${robot_name}/right_camera_link"/>
+    <origin xyz="0 -${base_width/2 + 0.025} 0.02" rpy="0 0 -1.5708"/>
+  </joint>
+
+
+
+  <!-- Gazebo插件 -->
+  <!-- 四轮差速控制器-->
+  <gazebo>
+    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+      <updateRate>100.0</updateRate>
+      <robotNamespace>${robot_name}</robotNamespace>
+      
+      <!-- 确保所有关节名称正确 -->
+      <leftFrontJoint>${robot_name}/left_front_wheel_joint</leftFrontJoint>
+      <rightFrontJoint>${robot_name}/right_front_wheel_joint</rightFrontJoint>
+      <leftRearJoint>${robot_name}/left_rear_wheel_joint</leftRearJoint>
+      <rightRearJoint>${robot_name}/right_rear_wheel_joint</rightRearJoint>
+      
+      <wheelSeparation>${2 * wheel_y_offset}</wheelSeparation>
+      <wheelDiameter>${2 * wheel_radius}</wheelDiameter>
+      <robotBaseFrame>${robot_name}/base_link</robotBaseFrame>
+      <torque>100</torque>
+      <topicName>cmd_vel</topicName>
+      <broadcastTF>1</broadcastTF>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>${robot_name}/odom</odometryFrame>
+      <publishWheelTF>false</publishWheelTF>
+      <publishWheelJointState>true</publishWheelJointState>  <!-- 改为true便于调试 -->
+    </plugin>
+  </gazebo>
+    
+  <!-- IMU插件 -->
+  <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+      <alwaysOn>true</alwaysOn>
+      <bodyName>${robot_name}/base_link</bodyName>
+      <topicName>imu</topicName>
+      <serviceName>imu_service</serviceName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <updateRate>20.0</updateRate>
+      <robotNamespace>${robot_name}</robotNamespace>
+    </plugin>
+  </gazebo>
+
+  <!-- 相机插件 -->
+  <gazebo reference="${robot_name}/camera_link">
+    <sensor type="camera" name="camera">
+      <update_rate>30</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>1920</width>
+          <height>1080</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>camera</cameraName>
+        <imageTopicName>image</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>${robot_name}/camera_link</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+        <robotNamespace>${robot_name}</robotNamespace>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- 右侧相机插件 -->
+  <gazebo reference="${robot_name}/right_camera_link">
+    <sensor type="camera" name="right_camera">
+      <update_rate>30</update_rate>
+      <camera name="right">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>1920</width>
+          <height>1080</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="right_camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>right_camera</cameraName>
+        <imageTopicName>image_right</imageTopicName>
+        <cameraInfoTopicName>camera_info_right</cameraInfoTopicName>
+        <frameName>${robot_name}/right_camera_link</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+        <robotNamespace>${robot_name}</robotNamespace>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+
+  <!-- 地面材质配置 -->
+  <gazebo>
+    <plugin name="ground_plane" filename="libgazebo_ros_planar_move.so">
+      <robotNamespace>${robot_name}</robotNamespace>
+      <bodyName>${robot_name}/base_link</bodyName>
+      <pubTopic>ground_truth</pubTopic>
+    </plugin>
+  </gazebo>
+
+
+</robot>

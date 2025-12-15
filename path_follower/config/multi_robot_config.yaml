@@ -1,0 +1,29 @@
+robots:
+  robot1:
+    path_file: "/home/cch/sensor_ws/src/path_follower/config/robot1_path.yaml"
+    target_tolerance: 0.1
+    angular_tolerance: 0.1
+    max_linear_speed: 0.5
+    max_angular_speed: 1.0
+    linear_gain: 1.0
+    angular_gain: 2.0
+    
+  robot2:
+    path_file: "/home/cch/sensor_ws/src/path_follower/config/robot2_path.yaml"
+    target_tolerance: 0.15
+    angular_tolerance: 0.15
+    max_linear_speed: 0.4
+    max_angular_speed: 0.8
+    linear_gain: 0.8
+    angular_gain: 1.5
+    
+  robot3:
+    path_file: "/home/cch/sensor_ws/src/path_follower/config/robot3_path.yaml"
+    target_tolerance: 0.12
+    angular_tolerance: 0.12
+    max_linear_speed: 0.6
+    max_angular_speed: 1.2
+    linear_gain: 1.2
+    angular_gain: 2.2
+
+# Add more robots as needed

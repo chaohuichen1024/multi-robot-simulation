@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- 多机器人键盘控制节点 -->
+    <node name="multi_robot_keyboard" pkg="robot_joy" type="multi_robot_keyboard_node.py" output="screen">
+        <!-- 基本参数 -->
+        <param name="robot_count" value="3" />
+        <param name="scale_linear" value="0.5" />
+        <param name="scale_angular" value="1.0" />
+    </node>
+</launch>

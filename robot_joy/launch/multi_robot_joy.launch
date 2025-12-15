@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- 启动手柄驱动 -->
+    <node name="joy_node" pkg="joy" type="joy_node" output="screen">
+        <param name="dev" value="/dev/input/js0" />
+        <param name="deadzone" value="0.05" />
+        <param name="autorepeat_rate" value="20.0" />
+    </node>
+
+    <!-- 多机器人手柄控制节点 -->
+    <node name="multi_robot_joy" pkg="robot_joy" type="multi_robot_joy.py" output="screen">
+        <param name="robot_count" value="3" />
+        <param name="prev_button" value="4" />  <!-- LB -->
+        <param name="next_button" value="5" />  <!-- RB -->
+        <param name="axis_linear" value="1" />
+        <param name="axis_angular" value="3" />
+        <param name="scale_linear" value="1.5" />
+        <param name="scale_angular" value="3.0" />
+    </node>
+</launch>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- 机器人相对位置发布器 -->
+    <node pkg="my_robot_simulation" 
+          type="robot_relative_position_publisher.py" 
+          name="robot_relative_position_publisher" 
+          output="screen">
+        
+        <!-- 参考机器人名称 -->
+        <param name="reference_robot" value="robot1" />
+        
+        <!-- 机器人列表，可以添加robot4、robot5等 -->
+        <rosparam param="robot_names">["robot1", "robot2", "robot3"]</rosparam>
+        
+    </node>
+</launch>

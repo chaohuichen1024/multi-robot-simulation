@@ -1,0 +1,19 @@
+
+<launch>
+    <node name="multi_robot_path_recorder" pkg="path_follower" type="multi_robot_path_recorder.py" output="screen">
+        <!-- 机器人数量 -->
+        <param name="robot_count" value="4" />
+        
+        <!-- 记录间隔（秒） -->
+        <param name="record_interval" value="2.0" />
+        
+        <!-- 运动检测阈值（米） -->
+        <param name="movement_threshold" value="0.05" />
+        
+        <!-- 角度变化阈值（弧度） -->
+        <param name="angular_threshold" value="0.1" />
+        
+        <!-- 输出目录 -->
+        <param name="output_directory" value="/home/cch/sensor_ws/src/path_follower/config/" />
+    </node>
+</launch>
